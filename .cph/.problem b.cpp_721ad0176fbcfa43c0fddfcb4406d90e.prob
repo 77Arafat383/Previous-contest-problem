@@ -1,0 +1,1 @@
+{"name":"Local: problem b","url":"d:\\Program practice\\problem b.cpp","tests":[{"id":1720011939978,"input":"3\n3 2\nace\n5 3\nacfdr\n5 26\nacfdr","output":"3\n22\n-1"},{"id":1720012644506,"input":"1\n2 4\naj","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Program practice\\problem b.cpp","group":"local","local":true}

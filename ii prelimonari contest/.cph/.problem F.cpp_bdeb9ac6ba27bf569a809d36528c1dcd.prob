@@ -1,0 +1,1 @@
+{"name":"Local: problem F","url":"d:\\Program practice\\ii prelimonari contest\\problem F.cpp","tests":[{"id":1720099733286,"input":"2\nh**\n*h*\n**h\nh**\n**h\n***","output":"No\nYes"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Program practice\\ii prelimonari contest\\problem F.cpp","group":"local","local":true}

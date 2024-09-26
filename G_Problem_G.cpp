@@ -1,0 +1,69 @@
+//**************BISMILLAHIR RAHMANIR RAHIM****************
+#include<bits/stdc++.h>
+using namespace std;
+#define    ll               long long
+const int M =  1e9+7;
+#define    all(x)           x.begin(), x.end()
+#define    w(x)             while(x--)
+#define    pi               acos(-1.00)
+#define rev(v) reverse(all(v));
+#define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
+#define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
+const int N=1e3+10;
+
+vector<ll>fact(N+10,0);
+void factorial()
+{
+    fact[0]=1;
+    fact[1]=1;
+    for(int i=2; i<N; i++)
+    {
+        fact[i]=(i*1LL*fact[i-1])%M;
+    }
+}
+
+ll binex(ll a, ll b)
+{
+    ll ans=1;
+   while(b)
+   {
+      if(b&1)
+      {
+        ans=(ans*1LL*a)%M;
+
+      }
+      a=(a*1LL*a)%M;
+      b>>=1;
+   }
+   return ans;
+}
+
+ll combinatrix(ll n, ll r)
+{
+    
+    ll deno=(fact[r]*1LL*fact[n-r])%M;
+    deno=binex(deno,M-2);
+    ll ans=(fact[n]*1LL*deno)%M;
+    return ans;
+
+}
+
+
+void solve()
+{
+    ll n,m;
+    cin>>n>>m;
+    ll ans=combinatrix(n+m-1,m-1);
+    cout<<ans<<endl;
+}
+
+
+int main()
+{
+ ios_base::sync_with_stdio(false) , cin.tie(NULL);
+ factorial();
+int t;
+cin>>t;
+w(t) solve();
+    return 0;
+}
