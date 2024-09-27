@@ -13,38 +13,34 @@ const int M =  1e9+7;
 const int N=1e5;
 
 
-int query(int a, int b) {
-    cout << "? " << a << " " << b << endl;
-    int p;
-    cin >> p;
-    return p;
-}
- 
-void solve() {
- 
+
+
+void solve()
+{
     int n;
-    cin >> n;
- 
-    vector<pair<int, int> > v;
- 
-    for (int i = 2 ; i<=n ; i++) {
-        int root = 1;
-        while(1) {
-            int p = query(i, root);
-            if(p==i) {
-                v.push_back({p, root});
-                break;
-            }
-            root = p;
-        }
+    cin>>n;
+    set<int>s;
+    for(int i=1;i<=n;i++) 
+    {
+        int x;
+        cin>>x;
+        s.insert(x);
     }
- 
-    cout << "! ";
-    for (auto &[i,j]:v)
-        cout << i << " " << j << " ";
-    cout << endl;
- 
+    if(s.size()>2)
+    {
+        cout<<"NO\n";
+        return;
+    }
+    if(*s.rbegin()-*s.begin()>1 )
+    {
+        cout<<"YES\n";
+        return;
+    }
+    cout<<"NO\n";
+    return;
 }
+
+
 signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);

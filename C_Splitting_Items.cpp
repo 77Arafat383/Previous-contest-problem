@@ -13,38 +13,40 @@ const int M =  1e9+7;
 const int N=1e5;
 
 
-int query(int a, int b) {
-    cout << "? " << a << " " << b << endl;
-    int p;
-    cin >> p;
-    return p;
-}
- 
-void solve() {
- 
-    int n;
-    cin >> n;
- 
-    vector<pair<int, int> > v;
- 
-    for (int i = 2 ; i<=n ; i++) {
-        int root = 1;
-        while(1) {
-            int p = query(i, root);
-            if(p==i) {
-                v.push_back({p, root});
-                break;
-            }
-            root = p;
+
+
+void solve()
+{
+    int n,k;
+    cin>>n>>k;
+    vector<int>v(n+1);
+    for(int i=1; i<=n; i++) cin>>v[i];
+    sort(all(v));
+    for(int i=n; i>=1; i-=2)
+    {
+        int dif=v[i]-v[i-1];
+        if(dif>=k and k>0)
+        {
+            v[i-1]+=k;
+            k=0;
         }
+        else if(k>0)
+        {
+            v[i-1]=v[i];
+            k-=dif;
+        }
+
     }
- 
-    cout << "! ";
-    for (auto &[i,j]:v)
-        cout << i << " " << j << " ";
-    cout << endl;
- 
+    ll suma=0,sumb=0;
+    for(int i=1; i<=n; i++)
+    {
+        if(i&1) suma+=v[n-i+1];
+        else sumb+=v[n-i+1];
+    }
+    cout<<suma-sumb<<endl;
 }
+
+
 signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
