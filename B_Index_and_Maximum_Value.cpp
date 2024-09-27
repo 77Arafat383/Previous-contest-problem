@@ -17,32 +17,29 @@ const int N=1e5;
 
 void solve()
 {
-    int n,q;
-    cin>>n>>q;
-    vector<int>v(n),tem(n+2,0);
-    for(auto &it:v) cin>>it;
-    sort(all(v));
-    w(q)
+    int n,m;
+    cin>>n>>m;
+    int mx=0;
+    for(int i=1; i<=n; i++)
     {
-        char ch;
-        int l,r;
-        cin>>ch>>l>>r;
-        int i=lower_bound(all(v),l)-v.begin();
-        int j=upper_bound(all(v),r)-v.begin();
-        if(ch=='+')
-        {
-            tem[i]++;
-            tem[j]--;
-
-        }
-        else
-        {
-            tem[i]--;
-            tem[j]++;
-
-        }
+        int x;
+        cin>>x;
+        mx=max(mx,x);
     }
-    printv(tem);
+    w(m)
+    {
+        char oper;
+        int l,r;
+        cin>>oper>>l>>r;
+        if(mx>=l and mx<=r)
+        {
+            if(oper=='+') mx++;
+            else mx--;
+        }
+        cout<<mx<<" ";
+
+    }
+    cout<<endl;
 }
 
 
