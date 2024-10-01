@@ -75,20 +75,20 @@ void solve()
         if(x==0) n0++;
         else n1++;
     }
-
-    ll mn1=(k+1)/2;
-    ll mx0=k/2;
+    
+    ll i=(k+1)/2;
+    ll j=k-i;
 
     ll ans=0;
-    while(mn1<=n1 and mn1<=k)
+    while(i<=n1 and i<=k)
     {
-        ll a=nCr(n1,mn1);
-        mn1++;
+        ll a=nCr(n1,i);
+        i++;
         ll b=1;
-        if(mx0>0)
+        if(j>0)
         {
-            b=nCr(n0,mx0);
-            mx0--;
+            b=nCr(n0,j);
+            j--;
         }
 
         ans=(ans+(a*b)%M)%M;
