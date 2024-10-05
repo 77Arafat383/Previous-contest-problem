@@ -145,6 +145,7 @@ void solve()
     dijestra1();
     dijestran(n);
     ll ans=LLONG_MAX;
+    //it this okey?
     for(int i=1; i<=n; i++)
     {
         ans=min(ans,max(min(dis_1[i][0],dis_1[i][1]),min(dis_n[i][0],dis_n[i][1])));
