@@ -1,8 +1,12 @@
 //**************BISMILLAHIR RAHMANIR RAHIM****************
+//*******************Md Yeasin Arafat****************
 #include<bits/stdc++.h>
 using namespace std;
 #define check cout<<'?'<<endl;
 #define    ll               long long
+#define Judge(x) x==0 ? cout<<"NO\n" : cout<<"YES\n";
+#define judge(x) x==0 ? cout<<"No\n" : cout<<"Yes\n";
+#define en '\n'
 const int M =  1e9+7;
 #define    all(x)           x.begin(), x.end()
 #define    w(x)             while(x--)
@@ -10,6 +14,8 @@ const int M =  1e9+7;
 #define rev(v) reverse(all(v));
 #define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
 #define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
+#define printmv(a) for(auto [x,v]:a) cout<<x<<endl, printv(v)
+#define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
 
@@ -17,31 +23,25 @@ const int N=1e5;
 
 void solve()
 {
-    int n,k;
-    cin>>n>>k;
-    vector<int>ans;
-    for(int i=1; i<=n; i++)
-    {
-        int x;
-        cin>>x;
-        if(x%k==0)
-        {
-            x/=k;
-            ans.push_back(x);
-        }
-    }
-    printv(ans);
+    int n,t,p;
+    cin>>n>>t>>p;
+    vector<int>v(n);
+    sort(v.rbegin(),v.rend());
+    int value=t-v[n-p];
+    if(value<=0) value=0;
+    cout<<value<<en;
+
 }
 
 
 signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
-int t;
-t=1;
-for(int i=1; i<=t; i++) 
+int ttt=1;
+//cin>>ttt;
+for(int tt=1; tt<=ttt; tt++) 
 {
-//cout<<'t'<<i<<endl;
+//cout<<"Case #"<<tt<<": ";
 solve();
 }
     return 0;
