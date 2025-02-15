@@ -18,37 +18,33 @@ const int M =  1e9+7;
 #define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
-ll f(ll rest,vector<ll>&dp)
-{
-    if(rest==0) return 1;
-    if(dp[rest]!=-1) return dp[rest];
-    dp[rest]=f(rest-1,dp)%M;
-    if(rest>1) dp[rest]+=((2LL*(rest-1))%M*f(rest-2,dp))%M;
-    return dp[rest];
-}
+
 
 
 void solve()
 {
-    ll n,k;
-    cin>>n>>k;
-    vector<ll>row(n+1,0);
-    for(int i=1; i<=k; i++)
+    int n;
+    cin>>n;
+    string str;
+    cin>>str;
+    int cnt=0;
+    for(int i=0; i<n; i++) 
     {
-        ll x,y;
-        cin>>x>>y;
-        row[x]=row[y]=1;
+        cnt+=(str[i]=='1');
     }
-    ll rest=0;
-    for(int i=1; i<=n; i++) 
+    int neg=n-cnt;
+    int st=0,last=(1<<n);
+    for(int i=0; i<cnt; i++)
     {
-        if(!row[i]) rest++;
+        st+=(1<<i);
     }
-
-    vector<ll>dp(rest+1,-1);
     
-    ll ans=f(rest,dp)%M;
-    cout<<ans<<en;
+    for(int i=0; i<neg; i++ )
+    {
+        last-=(1<<i);
+    }
+    
+    for(int i=st+1; i<=last; i++) cout<<i<<' '; cout<<en;
 }
 
 
@@ -56,7 +52,7 @@ signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
 int ttt=1;
-cin>>ttt;
+//cin>>ttt;
 for(int tt=1; tt<=ttt; tt++) 
 {
 //cout<<"Case #"<<tt<<": ";
