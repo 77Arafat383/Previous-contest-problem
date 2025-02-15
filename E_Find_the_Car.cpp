@@ -1,7 +1,12 @@
 //**************BISMILLAHIR RAHMANIR RAHIM****************
+//*******************Md Yeasin Arafat****************
 #include<bits/stdc++.h>
 using namespace std;
+#define check cout<<'?'<<endl;
 #define    ll               long long
+#define Judge(x) x==0 ? cout<<"NO\n" : cout<<"YES\n";
+#define judge(x) x==0 ? cout<<"No\n" : cout<<"Yes\n";
+#define en '\n'
 const int M =  1e9+7;
 #define    all(x)           x.begin(), x.end()
 #define    w(x)             while(x--)
@@ -9,38 +14,49 @@ const int M =  1e9+7;
 #define rev(v) reverse(all(v));
 #define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
 #define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
+#define printmv(a) for(auto [x,v]:a) cout<<x<<endl, printv(v)
+#define bitcount(x) __builtin_popcount(x)
+const int N=1e5;
 
 
 
 
 void solve()
 {
-    int n,k,q;
+    ll n,k,q;
     cin>>n>>k>>q;
-    vector<int>a(k+1),b(k+1);
+    vector<ll>a(k+1,0),b(k+1,0);
     for(int i=1; i<=k; i++) cin>>a[i];
     for(int i=1; i<=k; i++) cin>>b[i];
-    w(q)
+    while(q--)
     {
-        int x;
-        cin>>x;
-        int idx=upper_bound(all(a),x)-a.begin();
-       // cout<<idx<<" ";
-       int ans=b[idx-1];
-       int dd=((b[idx]-b[idx-1])*(x-a[idx-1]))/(a[idx]-a[idx-1]);
-     
-       cout<<ans<<" ";
-        
+        ll d;
+        cin>>d;
+        int idx=upper_bound(all(a),d)-a.begin();
+        idx--;
+        ll ans=b[idx];
+        d-=a[idx];
+        if(idx==k or d==0)
+        {
+            cout<<ans<<' ';
+            continue;
+        }
+        ans+=d*(b[idx+1]-b[idx])/(a[idx+1]-a[idx]);
+        cout<<ans<<' ';
     }
-    cout<<endl;
-
+    cout<<en;
 }
 
 
-int main()
+signed main()
 {
-int t;
-cin>>t;
-w(t) solve();
+ ios_base::sync_with_stdio(false) , cin.tie(NULL);
+int ttt=1;
+cin>>ttt;
+for(int tt=1; tt<=ttt; tt++) 
+{
+//cout<<"Case #"<<tt<<": ";
+solve();
+}
     return 0;
 }

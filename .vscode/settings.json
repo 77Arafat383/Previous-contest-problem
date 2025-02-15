@@ -34,7 +34,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeindex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "random": "cpp"
     },
     "cmake.configureOnOpen": false
 }
