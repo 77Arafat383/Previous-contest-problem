@@ -6,15 +6,15 @@ using namespace std;
 #define    ll               long long
 #define Judge(x) x==0 ? cout<<"NO\n" : cout<<"YES\n";
 #define judge(x) x==0 ? cout<<"No\n" : cout<<"Yes\n";
-#define en '\n'
+#define endline '\n'
 const int M =  1e9+7;
 #define    all(x)           x.begin(), x.end()
 #define    w(x)             while(x--)
 #define    pi               acos(-1.00)
 #define rev(v) reverse(all(v));
-#define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
-#define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
-#define printmv(a) for(auto [x,v]:a) cout<<x<<endl, printv(v)
+#define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endline
+#define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endline
+#define printmv(a) for(auto [x,v]:a) {cout<<x<<endline; printv(v);}
 #define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
@@ -23,14 +23,15 @@ const int N=1e5;
 
 void solve()
 {
-    int n,t,p;
-    cin>>n>>t>>p;
-    vector<int>v(n);
-    sort(v.rbegin(),v.rend());
-    int value=t-v[n-p];
-    if(value<=0) value=0;
-    cout<<value<<en;
-
+    int n=12;
+    string str;
+    int ans=0;
+    for(int i=1; i<=n; i++)
+    {
+        cin>>str;
+        if(str.size()==i) ans++;
+    }
+    cout<<ans<<endline;
 }
 
 
