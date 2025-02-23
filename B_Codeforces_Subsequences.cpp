@@ -23,7 +23,31 @@ const int N=1e5;
 
 void solve()
 {
-    
+    ll n;
+    cin>>n;
+    string ans="codeforces";
+    if(n==1)
+    {
+        cout<<ans<<'\n';
+        return;
+    }
+    for(int t=1; ; t++)
+    {
+        vector<ll>cnt(10);
+        for(int i=0; i<t%10; i++) cnt[i]=t/10+2;
+        for(int i=t%10; i<10; i++) cnt[i]=t/10+1;
+        ll sum=1;
+        for(int i=0; i<10; i++) sum*=cnt[i];
+        if(sum>=n)
+        {
+            for(int i=0; i<10; i++)
+            {
+                for(int j=0; j<cnt[i]; j++) cout<<ans[i];
+            }
+
+            return;
+        }
+    }
 }
 
 
