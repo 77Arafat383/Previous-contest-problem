@@ -18,22 +18,37 @@ const int M =  1e9+7;
 #define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
-ll cal(ll a)
-{
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
-}
 
+#define F first
+#define S second
+
+
+int n;
+ll a[N];
+vector<ll> dp[N];
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
-    cout<<ans<<nxt;
+	cin>>n;
+	for(int i=0;i<n;i++) cin>>a[1<<i];
+	for(int i=1;i<(1<<n);i++) 
+    {
+        if(__builtin_popcount(i)>1)
+        {
+            int x=__builtin_ctz(i);
+            a[i]=a[i^(1<<x)]+a[1<<x];
+        }
+    }
+	dp[0].push_back(0);
+	for(int i=1;i<(1<<n);i++){
+		int _=__builtin_ctz(i);
+		for(int j=i;j;j=(j-1)&i) if((j>>_)&1){
+			for(auto x:dp[i^j]) dp[i].push_back(x^a[j]);
+		}
+		sort(dp[i].begin(),dp[i].end());
+		dp[i].erase(unique(dp[i].begin(),dp[i].end()),dp[i].end());
+	}
+	cout<<dp[(1<<n)-1].size()<<'\n';
+	return;
 }
 
 
@@ -41,7 +56,7 @@ signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
 int ttt=1;
-cin>>ttt;
+//cin>>ttt;
 for(int tt=1; tt<=ttt; tt++) 
 {
 //cout<<"Case #"<<tt<<": ";

@@ -16,23 +16,43 @@ const int M =  1e9+7;
 #define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<nxt
 #define printmv(a) for(auto [x,v]:a) {cout<<x<<nxt; printv(v);}
 #define bitcount(x) __builtin_popcount(x)
+#define si(x) int(x.size())
 const int N=1e5;
 
-ll cal(ll a)
+
+ll fun(int st, int en, int cr, vector<vector<int>>&dp)
 {
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
+    if(st>en) return 0;
+    if(st==en) return ((dp[en][cr]-dp[st-1][cr])==0);
+    ll mid=(st+en)/2;
+    ll len=en-st+1;
+    len/=2;
+    ll ans1=len-(dp[mid][cr]-dp[st-1][cr])+fun(mid+1,en,cr+1,dp);
+    ll ans2=len-(dp[en][cr]-dp[mid][cr])+fun(st,mid,cr+1,dp);
+    return min(ans1,ans2);
 }
 
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
+    int n;
+    cin>>n;
+    string str;
+    
+    cin>>str;
+    str='a'+str;
+    vector<vector<int>>dp(n+1,vector<int>(26,0));
+    for(int i=1; i<=n; i++)
+    {
+        dp[i][str[i]-'a']++;
+    }
+    for(int i=0; i<26; i++)
+    {
+        for(int j=1; j<=n; j++)
+        {
+            dp[j][i]+=dp[j-1][i];
+        }
+    }
+    ll  ans=fun(1,n,0,dp);
     cout<<ans<<nxt;
 }
 

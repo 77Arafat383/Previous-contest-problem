@@ -18,22 +18,25 @@ const int M =  1e9+7;
 #define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
-ll cal(ll a)
-{
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
-}
+
+
 
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
-    cout<<ans<<nxt;
+    int n;
+    cin>>n;
+    vector<ll> v(n);
+    for(int i=0; i<n; i++) cin>>v[i];
+    
+    for(int i=1; i<n-1; i++)
+    {
+        if(v[i]*v[i]!=v[i-1]*v[i+1])
+        {
+            cout<<"No\n";
+            return;
+        }
+    }
+    cout<<"Yes\n";
 }
 
 
@@ -41,7 +44,7 @@ signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
 int ttt=1;
-cin>>ttt;
+//cin>>ttt;
 for(int tt=1; tt<=ttt; tt++) 
 {
 //cout<<"Case #"<<tt<<": ";

@@ -16,24 +16,48 @@ const int M =  1e9+7;
 #define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<nxt
 #define printmv(a) for(auto [x,v]:a) {cout<<x<<nxt; printv(v);}
 #define bitcount(x) __builtin_popcount(x)
+#define si(x) int(x.size())
 const int N=1e5;
 
-ll cal(ll a)
-{
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
-}
+
+
 
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
-    cout<<ans<<nxt;
+    int n;
+    cin>>n;
+
+    vector<vector<int>>pos(n+1);
+    for(int i=1; i<=n; i++)
+    {
+        int x;
+        cin>>x;
+        pos[x].push_back(i);
+    }
+
+    vector<int>ans(n+1,-1);
+    for(int i=1;i<=n;i++)
+    {
+        if(pos[i].empty()) continue;
+        int mx=0;
+        mx=max(mx,pos[i][0]);
+        mx=max(mx,n-pos[i].back()+1);
+        for(int j=1;j<pos[i].size();j++)
+        {
+            mx=max(mx,pos[i][j]-pos[i][j-1]);
+        }
+        while(mx<=n)
+        {
+            if(ans[mx]!=-1) break;
+            ans[mx]=i;
+            mx++;
+        }
+    }
+    for(int i=1; i<=n; i++)
+    {
+        cout<<ans[i]<<' ';
+    }
+    cout<<nxt;
 }
 
 

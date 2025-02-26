@@ -16,24 +16,36 @@ const int M =  1e9+7;
 #define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<nxt
 #define printmv(a) for(auto [x,v]:a) {cout<<x<<nxt; printv(v);}
 #define bitcount(x) __builtin_popcount(x)
+#define si(x) int(x.size())
 const int N=1e5;
 
-ll cal(ll a)
-{
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
-}
+// a = odd
+// b = (a ^ 2 - 1) / 2
+// c = b + 1 = (a ^ 2 + 1) / 2
+
 
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
-    cout<<ans<<nxt;
+    ll n;
+    cin>>n;
+    ll lo=1,hi=n;
+    ll ans=0;
+    while(lo<=hi)
+    {
+        ll mid=lo+(hi-lo)/2LL;
+        ll a=(2LL*mid)-1LL;
+        ll c=(a*a+1LL)/2LL;
+        if(c<=n)
+        {
+            ans=mid;
+            lo=mid+1;
+        }
+        else
+        {
+            hi=mid-1LL;
+        }
+    }
+    cout<<ans-1<<nxt;
 }
 
 

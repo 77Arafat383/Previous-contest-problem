@@ -18,22 +18,54 @@ const int M =  1e9+7;
 #define bitcount(x) __builtin_popcount(x)
 const int N=1e5;
 
-ll cal(ll a)
-{
-    ll cnt=0;
-    for(int i=1; i<=a; i*=10)
-    {
-        cnt+=a/i;
-    }
-    return cnt;
-}
+
+
 
 void solve()
 {
-    ll l,r;
-    cin>>l>>r;
-    ll ans= cal(r)-cal(l);
-    cout<<ans<<nxt;
+    int n,m;
+    cin>>n>>m;
+    vector<string>grid(n);
+    for(auto &it:grid) cin>>it;
+    int ra=-1,rb=-1,ca=-1,cb=-1;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            if(grid[i][j]=='#')
+            {
+                if(ra==-1) ra=i;
+                rb=i;
+            }
+        }
+    }
+
+    for(int j=0; j<m; j++)
+    {
+        for(int i=0; i<n; i++)
+        {
+            if(grid[i][j]=='#')
+            {
+                if(ca==-1) ca=j;
+                cb=j;
+            }
+        }
+
+    }
+
+    for(int i=ra; i<=rb; i++)
+    {
+        for(int j=ca; j<=cb; j++)
+        {
+            if(grid[i][j]=='.')
+            {
+                cout<<"No\n";
+                return;
+            }
+        }
+    }
+
+    cout<<"Yes\n";
 }
 
 
@@ -41,7 +73,7 @@ signed main()
 {
  ios_base::sync_with_stdio(false) , cin.tie(NULL);
 int ttt=1;
-cin>>ttt;
+//cin>>ttt;
 for(int tt=1; tt<=ttt; tt++) 
 {
 //cout<<"Case #"<<tt<<": ";
