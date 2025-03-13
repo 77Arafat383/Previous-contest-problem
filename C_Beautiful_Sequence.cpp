@@ -7,7 +7,8 @@ using namespace std;
 #define Judge(x) x==0 ? cout<<"NO\n" : cout<<"YES\n";
 #define judge(x) x==0 ? cout<<"No\n" : cout<<"Yes\n";
 #define nxt '\n'
-const int M =  998244353;
+const int M =  1e9+7;
+const ll bM =  998244353;
 #define    all(x)           x.begin(), x.end()
 #define    w(x)             while(x--)
 #define    pi               acos(-1.00)
@@ -19,61 +20,34 @@ const int M =  998244353;
 #define si(x) int(x.size())
 const int N=1e5;
 
-ll binex(ll a, ll b)
-{
-    ll ans=1;
-    while(b)
-    {
-        if(b&1)
-        {
-            ans=(ans*a)%M;
-        }
-        a=(a*a)%M;
-        b>>=1;
-    }
-    return ans;
-}
+
 
 
 void solve()
 {
-    int n;
+    ll n;
     cin>>n;
-    vector<int>v(n);
+    vector<ll>v(n);
     for(auto &it:v) cin>>it;
-    vector<int>one,three,pos1,pos3;
-    int cnt=0;
+    ll ans=0,cnt=0,sum=0;
     for(int i=0; i<n; i++)
     {
         if(v[i]==1)
         {
-            one.push_back(cnt);
-            pos1.push_back(i);
+            sum++;
+            cnt++;
         }
-        else if(v[i]==3)
+        else if(v[i]==2)
         {
-            three.push_back(cnt);
-            pos3.push_back(i);
+            sum=(sum*2)%bM;
         }
         else
         {
-            cnt++;
-        }
-    }
-    ll ans=0;
-    for(int i=0; i<si(one); i++)
-    {
-        int j=lower_bound(all(pos3),pos1[i])-pos3.begin();
-        if(j==pos3.size()) break;
-        for( ; j<si(three); j++)
-        {
-            ll dif=three[j]-one[i];
-            if(dif<=0) continue;
-            ans=(ans+binex(2LL,dif)-1LL+M)%M;
-
+            ans=(ans+bM+sum-cnt)%bM;
         }
     }
     cout<<ans<<'\n';
+
 }
 
 

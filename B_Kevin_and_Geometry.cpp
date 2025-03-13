@@ -4,18 +4,22 @@
 using namespace std;
 #define check cout<<'?'<<endl;
 #define    ll               long long
-#define Judge(x) x==0 ? cout<<"NO\n" : cout<<"YES\n";
-#define judge(x) x==0 ? cout<<"No\n" : cout<<"Yes\n";
-#define en '\n'
 const int M =  1e9+7;
+const ll bM =  998244353;
 #define    all(x)           x.begin(), x.end()
-#define    w(x)             while(x--)
 #define    pi               acos(-1.00)
 #define rev(v) reverse(all(v));
-#define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
-#define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
-#define printmv(a) for(auto [x,v]:a) cout<<x<<endl, printv(v)
+#define rsort(v) sort(v.rbegin(),v.rend());
+#define taking(a)  for(auto &it:a) cin>>it;
+#define printv(a)  for(auto &it:a) cout<<it<<' '; cout<<'\n'
+#define printm(a)  for(auto &[x,y]:a) cout<<x<<' '<<y<<'\n'
+#define printmv(a) for(auto [x,v]:a) {cout<<x<<'\n'; printv(v);}
 #define bitcount(x) __builtin_popcount(x)
+#define si(x) int(x.size())
+#define vl vector<ll>
+#define vll vector<pair<ll,ll>>
+#define Mp map<ll,ll>
+#define MV map<ll,vl>
 const int N=1e5;
 
 
@@ -23,53 +27,53 @@ const int N=1e5;
 
 void solve()
 {
-    ll n;
+    int n;
     cin>>n;
-    vector<ll>v(n);
-    for(auto &it:v ) cin>>it;
+    vl v(n);
+    taking(v);
     map<int,int>mp;
-    vector<int>p;
-    for(auto &it:v) mp[it]++;
-    for(auto &[x,y]:mp) 
+    for(int i=0; i<n; i++)
     {
-        if(y>=4)
+        mp[v[i]]++;
+    }
+    sort(all(v));
+    v.erase(unique(all(v)),v.end());
+    int p=-1;
+    for(auto &[x,y]:mp)
+    {
+        if(y>=2) p=x;
+    }
+    
+    if(p==-1)
+    {
+        cout<<-1<<'\n';
+        return;
+    }
+    int a=-1,b=-1;
+    int pv=-1;
+    for(int i=0; i<v.size(); i++)
+    {
+        int x=v[i];
+        int cnt=mp[x];
+        if(x==p) cnt-=2;
+        if(cnt==0) continue;
+        if(cnt>=2)
         {
-            cout<<x<<' '<<x<<' '<<x<<' '<<x<<en;
+            cout<<p<<' '<<p<<' '<<x<<' '<<x<<'\n';
             return;
         }
-        if(y>=2) p.push_back(x);
-    }
-    for(auto &it:p)
-    {
-        int left=-1,right=-1;
-        for(auto &[x,y]:mp)
+        if(pv!=-1)
         {
-            if(x==it)
+            if(p+p+pv>x and p+p+x>pv)
             {
-                if(y>2) right=x ;
-                 
-            }
-            else if(y>1)
-            {
-                cout<<it<<' '<<it<<' '<<x<<' '<<x<<en;
+                cout<<p<<' '<<p<<' '<<pv<<' '<<x<<'\n';
                 return;
             }
-            else right=x;
-            if(left!=-1 and right!=-1)
-            {
-                if(left==right and mp[left]<2) continue;
-                if(right-left<=it)
-                {
-                    cout<<it<<' '<<it<<' '<<left<<' '<<right<<en;
-                    return;
-                }
-            }
-            left=right;
         }
+        pv=x;
     }
-    cout<<"-1\n";
+    cout<<-1<<'\n';
     return;
-     
 
 }
 

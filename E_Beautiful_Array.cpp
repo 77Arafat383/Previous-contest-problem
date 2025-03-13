@@ -1,99 +1,50 @@
 //**************BISMILLAHIR RAHMANIR RAHIM****************
+//*******************Md Yeasin Arafat****************
 #include<bits/stdc++.h>
 using namespace std;
+#define check cout<<'?'<<endl;
 #define    ll               long long
 const int M =  1e9+7;
+const ll bM =  998244353;
 #define    all(x)           x.begin(), x.end()
-#define    w(x)             while(x--)
 #define    pi               acos(-1.00)
 #define rev(v) reverse(all(v));
-#define printv(a)  for(auto it:a) cout<<it<<' '; cout<<endl
-#define printm(a)  for(auto it:a) cout<<it.first<<' '<<it.second<<endl
+#define rsort(v) sort(v.rbegin(),v.rend());
+#define taking(a)  for(auto &it:a) cin>>it;
+#define printv(a)  for(auto &it:a) cout<<it<<' '; cout<<'\n'
+#define printm(a)  for(auto &[x,y]:a) cout<<x<<' '<<y<<'\n'
+#define printmv(a) for(auto [x,v]:a) {cout<<x<<'\n'; printv(v);}
+#define bitcount(x) __builtin_popcount(x)
+#define si(x) int(x.size())
+#define vl vector<ll>
+#define vll vector<pair<ll,ll>>
+#define Mp map<ll,ll>
+#define MV map<ll,vl>
+const int N=1e5;
 
 
 
 
 void solve()
 {
-
-    ll n,k;
-    cin>>n>>k;
-    map<ll,int>mp;
-    for(int i=0; i<n; i++)
-    {
-        ll x;
-        cin>>x;
-        mp[x]++;
-    }
-    vector<ll>v;
-    vector<ll>next,prev;
-    for(auto &[x,y]:mp)
-    {
-        if(y&1)
-        {
-            v.push_back(x);
-        }
-
-    }
-    prev.push_back(-1);
-   
-    for(int i=0; i<=n; i++)
-    {
-       prev.push_back(i);
-        next.push_back(i+1);
-    }
-    next[v.size()-1]=-1;
-    
-
-    map<int,int>eleminate;
-    int ans=0;
-    int life=0;
-    if(n&1) life=1;
-    int total=v.size();
-    for(int i=0; i!=-1; i=next[i])
-    {
-        
-        bool ok=false;
-        int j=next[i];
-        while(j!=-1)
-        {
-            int dif=abs(v[i]-v[j]);
-            if(dif%k==0)
-            {
-                cout<<v[i]<<" "<<v[j]<<endl;
-               
-              next[prev[j]]=next[j];
-               prev[next[j]]=prev[j];
-              ans+=dif/k;
-            total-=2;
-                ok=true;
-                break;
-            }
-            j=next[j];
-        }
-        if(total<2)
-        {
-            break;
-        }
-        if(!ok and life)
-        {
-            life=0;
-        }
-        else if(!ok )
-        {
-            cout<<-1<<endl;
-            return;
-        }
-
-    }
-    cout<<ans<<endl;
+    ll a,b;
+    cin>>a>>b;
+    ll sum=3*a-b;
+    cout<<3<<'\n';
+    cout<<b<<' '<<b<<' '<<sum-b<<'\n';
+    return;
 }
 
 
-int main()
+signed main()
 {
-int t;
-cin>>t;
-w(t) solve();
+ ios_base::sync_with_stdio(false) , cin.tie(NULL);
+int ttt=1;
+//cin>>ttt;
+for(int tt=1; tt<=ttt; tt++) 
+{
+//cout<<"Case #"<<tt<<": ";
+solve();
+}
     return 0;
 }
